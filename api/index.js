@@ -1,12 +1,21 @@
 const env = require("dotenv");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const authRoute = require("./routes/authRoute");
 env.config();
 
 app.use(express.json());
+
+// CORS configuration options
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow this specific origin
+  methods: "GET,POST,PUT,DELETE", // Specify allowed methods
+  allowedHeaders: "Content-Type,Authorization", // Specify allowed headers
+};
+app.use(cors(corsOptions));
 
 //connecting to MongoDb
 mongoose
