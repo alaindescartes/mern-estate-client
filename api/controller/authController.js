@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 
 const signUp = async (req, res, next) => {
   const { username, email, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10);
+  const hashedPassword = bcrypt.hashSync(password, 10); //hash the password
   const newUser = new User({ username, email, password: hashedPassword });
 
   try {
-    await newUser.save();
+    await newUser.save(); //save User to the Db
     res.status(201).json({ message: 'user created successfully' });
   } catch (error) {
     next(error);
@@ -44,10 +44,11 @@ const signIn = async (req, res, next) => {
     res
       .cookie('access_token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Ensure cookies are secure in production
+        //secure: process.env.NODE_ENV === 'production',
       })
       .status(200)
       .json({ user: otherInfo, message: 'Successfully logged in' });
+    console.log('Set-Cookie header:', res.getHeaders()['set-cookie']);
   } catch (error) {
     next(error);
   }
