@@ -3,7 +3,10 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
+const authRoute = require("./routes/authRoute");
 env.config();
+
+app.use(express.json());
 
 //connecting to MongoDb
 mongoose
@@ -17,6 +20,7 @@ mongoose
 
 //setting up routes
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoute);
 
 app.listen(3000, () => {
   console.log("server is running on port 3000!!");
