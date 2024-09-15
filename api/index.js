@@ -18,7 +18,7 @@ mongoose
     console.log("Error: " + err);
   });
 
-//middleware
+//middleware routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoute);
 

@@ -38,6 +38,11 @@ function Header() {
               Sign In
             </li>
           </Link>
+          <Link to="/sign-up">
+            <li className=" sm:inline text-slate-700 hover:underline hover:cursor-pointer">
+              Sign Up
+            </li>
+          </Link>
         </ul>
       </div>
     </header>
