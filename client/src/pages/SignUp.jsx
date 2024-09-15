@@ -32,7 +32,7 @@ function SignUp() {
       }
 
       setMessage(data.message || "User signed up successfully!");
-      navigate("/");
+      navigate("/sign-in");
     } catch (error) {
       setError(error.message || "Failed to sign up. Please try again.");
     } finally {
