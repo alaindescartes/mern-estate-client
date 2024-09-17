@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth.jsx';
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -15,10 +16,10 @@ function SignUp() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
-        method: "POST",
+      const res = await fetch('http://localhost:3000/api/auth/signup', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -27,14 +28,14 @@ function SignUp() {
 
       if (!res.ok) {
         throw new Error(
-          data.message || "Something went wrong. Please try again."
+          data.message || 'Something went wrong. Please try again.'
         );
       }
 
-      setMessage(data.message || "User signed up successfully!");
-      navigate("/sign-in");
+      setMessage(data.message || 'User signed up successfully!');
+      navigate('/sign-in');
     } catch (error) {
-      setError(error.message || "Failed to sign up. Please try again.");
+      setError(error.message || 'Failed to sign up. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -79,11 +80,12 @@ function SignUp() {
           type="submit"
           disabled={loading}
           className={`bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
+            loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
-          {loading ? "Loading..." : "Sign Up"}
+          {loading ? 'Loading...' : 'Sign Up'}
         </button>
+        <OAuth />
       </form>
 
       <div className="flex gap-2 mt-5">
